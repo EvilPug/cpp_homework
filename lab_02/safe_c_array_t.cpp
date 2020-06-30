@@ -54,7 +54,7 @@ public:
     }
 
     int length() {
-        return sizeof(arr);
+        return size;
     }
 
 };

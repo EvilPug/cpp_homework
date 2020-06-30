@@ -61,72 +61,72 @@ public:
 
     friend std::ostream& operator<<(std::ostream& out, const safe_long_long_t& param0);
 
-    safe_long_long_t operator+(const safe_long_long_t& param0, const safe_long_long_t& param1) {
-        safe_long_long_t current = param0;
-        current += param1;
-        return current;
-    }
 
-    safe_long_long_t operator-(const safe_long_long_t& param0, const safe_long_long_t& param1) {
-        safe_long_long_t current = param0;
-        current -= param1;
-        return current;
-    }
-
-    safe_long_long_t operator*(const safe_long_long_t& param0, safe_long_long_t param1) {
-        safe_long_long_t current = param0;
-        current *= param1;
-        return current;
-    }
-
-    safe_long_long_t operator/(const safe_long_long_t& param0, const safe_long_long_t& param1) {
-        safe_long_long_t current = param0;
-        current /= param1;
-        return current;
-    }
-
-    safe_long_long_t operator%(safe_long_long_t& param0, safe_long_long_t& param1) {
-        safe_long_long_t current = param0;
-        current %= param1;
-        return current;
-    }
-
-    bool operator==(safe_long_long_t param0, safe_long_long_t param1) {
-        return param0.get() == param1.get();
-    }
-
-    bool operator!=(const safe_long_long_t& param0, const safe_long_long_t& param1) {
-        return !(param0 == param1);
-    }
-
-    bool operator<(safe_long_long_t param0, safe_long_long_t param1) {
-        return param0.get() < param1.get();
-    }
-
-    bool operator>(safe_long_long_t param0, safe_long_long_t param1) {
-        return param0.get() > param1.get();
-    }
-
-    bool operator<=(safe_long_long_t param0, safe_long_long_t param1) {
-        return param0.get() <= param1.get();
-    }
-
-    bool operator>=(safe_long_long_t param0, safe_long_long_t param1) {
-        return param0.get() >= param1.get();
-    }
-
-    std::ostream& operator<<(std::ostream& outs, const safe_long_long_t& param0) {
-        return outs << param0.value;
-    }
-
-
-    std::istream& operator>>(std::istream& ins, const safe_long_long_t& param0) {
-        ins >> param0;
-        return ins;
-    }
 };
 
+safe_long_long_t operator+(const safe_long_long_t& param0, const safe_long_long_t& param1) {
+	safe_long_long_t current = param0;
+	current += param1;
+	return current;
+}
 
+safe_long_long_t operator-(const safe_long_long_t& param0, const safe_long_long_t& param1) {
+	safe_long_long_t current = param0;
+	current -= param1;
+	return current;
+}
+
+safe_long_long_t operator*(const safe_long_long_t& param0, safe_long_long_t param1) {
+	safe_long_long_t current = param0;
+	current *= param1;
+	return current;
+}
+
+safe_long_long_t operator/(const safe_long_long_t& param0, const safe_long_long_t& param1) {
+	safe_long_long_t current = param0;
+	current /= param1;
+	return current;
+}
+
+safe_long_long_t operator%(safe_long_long_t& param0, safe_long_long_t& param1) {
+	safe_long_long_t current = param0;
+	current %= param1;
+	return current;
+}
+
+bool operator==(safe_long_long_t param0, safe_long_long_t param1) {
+	return param0.get() == param1.get();
+}
+
+bool operator!=(const safe_long_long_t& param0, const safe_long_long_t& param1) {
+	return !(param0 == param1);
+}
+
+bool operator<(safe_long_long_t param0, safe_long_long_t param1) {
+	return param0.get() < param1.get();
+}
+
+bool operator>(safe_long_long_t param0, safe_long_long_t param1) {
+	return param0.get() > param1.get();
+}
+
+bool operator<=(safe_long_long_t param0, safe_long_long_t param1) {
+	return param0.get() <= param1.get();
+}
+
+bool operator>=(safe_long_long_t param0, safe_long_long_t param1) {
+	return param0.get() >= param1.get();
+}
+
+std::ostream& operator<<(std::ostream& outs, const safe_long_long_t& param0) {
+	return outs << param0.value;
+}
+
+
+std::istream& operator>>(std::istream& ins, const safe_long_long_t& param0) {
+	ins >> param0;
+	return ins;
+}
 
 
 int main()
