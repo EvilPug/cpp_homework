@@ -110,8 +110,8 @@ int main()
 	int func_num = 2;
 	int width = 100;
 	int height = 40;
-	double x0 = -1;
-	double x1 = 1;
+	double x0;
+	double x1;
 	char empty_char = ' ';
 	char filled_char = '#';
 	char zero_char = '-';
@@ -127,14 +127,21 @@ int main()
 
 	
 	
-	double x_step = (x1 - x0) / width;
+	double x_step = ((x1 - x0) / width);
 	std::vector<double> x_list = arange(x0, x1, x_step);
 
 
 	std::vector<double> y_list = generator(x_list, func_num);
 	double y_min = find_min(y_list);
 	double y_max = find_max(y_list);
-	double y_step = (y_max - y_min) / height;
+	double y_step;
+
+	if (func_num == 4) {
+		y_step = (y_max - y_min) / height;
+	}
+	else {
+		y_step = (y_max - y_min) / height + 0.02;
+	}
 	
 
 	std::vector<int> x_transformed;
@@ -149,12 +156,11 @@ int main()
 		y_transformed.push_back(std::round(y_list[i] / -y_step));
 	}
 
-	std::cout << x_transformed.size() << '\n' << y_transformed.size() << std::endl;
 
 
 	// Обработка отрицательной части
 	int min_remap_x = find_min(x_transformed);
-	if (min_remap_x < 0) {
+	if (min_remap_x != 0) {
 		for (int i = 0; i < x_transformed.size(); i++)
 		{
 			x_transformed[i] = x_transformed[i] - min_remap_x;
@@ -168,9 +174,9 @@ int main()
 			y_transformed[i] = y_transformed[i] - min_remap_y;
 		}
 	}
-	
+
 	// Инициализируем пустую сетку
-	std::vector<std::vector<char>> dot_list(height+60, std::vector<char>(width+60, empty_char));
+	std::vector<std::vector<char>> dot_list(height+20, std::vector<char>(width, empty_char));
 
 	// Заполняем пересечения x и у
 	for (int i = 0; i < width; i++)
@@ -178,10 +184,8 @@ int main()
 		dot_list[y_transformed[i]][x_transformed[i]] = filled_char;
 	}
 
-	// Вычиляем положение линии нуля
-	std::cout << y_min << std::endl;
-	std::cout << y_max << std::endl;
 
+	// Вычиляем положение линии нуля
 	if (y_min < 0 && y_max < 0) {
 
 		for (int i = 0; i < width; i++)
@@ -197,6 +201,16 @@ int main()
 		}
 
 	}
+	else if (y_max + y_min == 100){
+
+		int zero_height = (find_max(y_transformed) - find_min(y_transformed))/2;
+
+		for (int i = 0; i < width; i++)
+		{
+			dot_list[zero_height][i] = zero_char;
+		}
+	}
+
 	else {
 
 		int zero_height = height * abs(y_max) / (y_max - y_min);
@@ -207,7 +221,6 @@ int main()
 		}
 
 	}
-
 
 	dot_list = transpose(dot_list);
 
